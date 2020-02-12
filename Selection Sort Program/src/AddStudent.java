@@ -30,6 +30,7 @@ public class AddStudent extends GBDialog {
 	int testcount = 0;
 	int quizcount = 0;
 	int[] tests = new int[5];
+	int[] quizes = new int[8];
 	
 	public void buttonClicked(JButton button) {
 		if (button == addTestButton) {
@@ -40,7 +41,7 @@ public class AddStudent extends GBDialog {
 			tests[testcount] = testField.getNumber();
 			testcount++;
 			testField.setNumber(0);
-			testCountLabel.setText("Scores entered: 1");
+			testCountLabel.setText("Scores entered: " + testcount);
 		}
 		
 		if (button == addQuizButton) {
@@ -49,6 +50,10 @@ public class AddStudent extends GBDialog {
 				return;
 			}
 			
+			quizes[quizcount] = quizField.getNumber();
+			quizcount++;
+			quizField.setNumber(0);
+			quizCountLabel.setText("Scores entered: " + quizcount);
 			
 		}
 		

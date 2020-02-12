@@ -17,8 +17,18 @@ public class SelectionSortGUI  extends GBFrame {
 	
 	public void buttonClicked(JButton button) {
 		if (button == newStudentButton) {
+			AddStudent a = new AddStudent(this);
+			a.setVisible(true);
+		}
+		
+		if (button == printByNameButton) {
 			
 		}
+		
+		if (button == printByAverageButton) {
+			
+		}
+		
 	}
 	
 }
