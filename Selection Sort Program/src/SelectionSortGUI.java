@@ -15,18 +15,20 @@ public class SelectionSortGUI  extends GBFrame {
 	JButton printByAverageButton = addButton("Print Students by average",3,1,1,1);
 	JTextArea outputArea = addTextArea("",4,1,1,1);
 	
+	AllStudents s = new AllStudents();
+	
 	public void buttonClicked(JButton button) {
 		if (button == newStudentButton) {
-			AddStudent a = new AddStudent(this);
+			AddStudent a = new AddStudent(this, s) ;
 			a.setVisible(true);
 		}
 		
 		if (button == printByNameButton) {
-			
+			String output = "";
 		}
 		
 		if (button == printByAverageButton) {
-			
+			String output = "";
 		}
 		
 	}

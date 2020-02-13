@@ -3,10 +3,14 @@ import BreezySwing.*;
 
 public class AddStudent extends GBDialog {
 	
-	public AddStudent(JFrame parent) {
+	AllStudents students = new AllStudents();
+	
+	public AddStudent(JFrame parent, AllStudents a) {
 		super(parent);
 		setTitle("Input");
-		setSize(300, 300);
+		setSize(500, 500);
+		
+		students = a;
 	}
 	
 	JLabel nameLabel = addLabel("Name:",1,1,2,1);
@@ -34,18 +38,22 @@ public class AddStudent extends GBDialog {
 	
 	public void buttonClicked(JButton button) {
 		if (button == addTestButton) {
-			if (testField.getNumber() < 0 || !testField.isValidNumber()) {
+			if (testField.getNumber() <= 0 || !testField.isValidNumber()) {
 				messageBox("Invalid input");
 				return;
 			}
+				
 			tests[testcount] = testField.getNumber();
 			testcount++;
 			testField.setNumber(0);
 			testCountLabel.setText("Scores entered: " + testcount);
+			if (testcount == 5)
+				addTestButton.setEnabled(false);
+				
 		}
 		
 		if (button == addQuizButton) {
-			if (quizField.getNumber() < 0 || !quizField.isValidNumber()) {
+			if (quizField.getNumber() <= 0 || !quizField.isValidNumber()) {
 				messageBox("Invalid Input");
 				return;
 			}
@@ -54,10 +62,49 @@ public class AddStudent extends GBDialog {
 			quizcount++;
 			quizField.setNumber(0);
 			quizCountLabel.setText("Scores entered: " + quizcount);
+			if (quizcount == 8)
+				addQuizButton.setEnabled(false);
 			
+		}
+		
+		if (button == addStudentButton) {
+			StudentInfo s = new StudentInfo(tests, quizes, hwField.getNumber(), getFinalAvg(), nameField.getText());
+			students.addStudent(s);
 		}
 		
 		
 	}
+	
+	private double getFinalAvg() {
+		return 0.5 * getTestAvg() + 0.3 * getQuizAvg() + 0.2 * hwField.getNumber();
+	}
+	
+	private double getTestAvg() {
+		double total = 0;
+		int count = 0;
+		for(int a : tests) {
+			if (a == 0)
+				break;
+			total += a; 
+			count++;
+		}
+		
+		return total / count;
+	}
+	
+	private double getQuizAvg() {
+		double total = 0;
+		int count = 0;
+		for(int a : quizes) {
+			if (a == 0)
+				break;
+			total += a;
+			count++;
+		}
+		
+		return total / count;
+	}
+	
+
 	
 }
