@@ -23,7 +23,27 @@ public class StudentInfo {
 		return name;
 	}
 	
+	public String getInfo() {
+		String testlist = "";
+		for(int a : tests) {
+			if (a == 0)
+				break;
+			testlist += a + " ";
+		}
 		
+		String quizlist = "";
+		for(int a : quizzes) {
+			if (a == 0)
+				break;
+			quizlist += a + " ";
+		}
+		
+		return "Name: " + name + "\n" +
+				"Test scores: " + testlist + "\n" +
+				"Quiz scores: " + quizlist + "\n" +
+				"Homework average: " + hwavg + "\n" +
+				"Final average: " + finalavg;
+	}
 	
 	
 	

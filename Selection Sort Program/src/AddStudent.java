@@ -68,8 +68,14 @@ public class AddStudent extends GBDialog {
 		}
 		
 		if (button == addStudentButton) {
+			if (tests[0] == 0 || quizes[0] == 0 || hwField.getNumber() == 0 || nameField.getText().equals("")) {
+				messageBox("Invalid Inputs");
+				return;
+			}
+			
 			StudentInfo s = new StudentInfo(tests, quizes, hwField.getNumber(), getFinalAvg(), nameField.getText());
 			students.addStudent(s);
+			dispose();
 		}
 		
 		
